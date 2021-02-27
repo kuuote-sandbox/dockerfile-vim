@@ -14,7 +14,7 @@ jobs:
         image_type: ['full']
         base: ['alpine']
       fail-fast: false
-    runs-on: 'ubuntu-latest'
+    runs-on: 'ubuntu-20.04'
     env:
       CACHE_IMAGE_NAME: 'ghcr.io/${{ github.repository_owner }}/vim'
       HUB_IMAGE_NAME: 'thinca/vim'
@@ -32,7 +32,6 @@ jobs:
           echo "CACHE_IMAGE_PREPARE=${CACHE_IMAGE_NAME}:stage-cache-prepare-${{ matrix.image_type }}-${{ matrix.base }}" >> ${GITHUB_ENV}
 
       - uses: 'actions/checkout@v2'
-      - uses: mxschmitt/action-tmate@v3
       - name: 'Build'
         env:
           DOCKER_BUILDKIT: '1'
